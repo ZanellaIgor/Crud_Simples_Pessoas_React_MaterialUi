@@ -1,11 +1,11 @@
 import React from 'react';
 
-function InputField({ label, type, name, value, onChange }) {
+function InputField({ label, type, name, onChange, id }) {
   return (
-    <div>
-      <label htmlFor={name}> {label} </label>
-      <input type={type} name={name} value={value} onChange={onChange} />
-    </div>
+    
+      <label htmlFor={name}> {label} 
+      <input type={type} name={name}  onChange={onChange} id={id} /></label>
+    
   );
 }
 
