@@ -1,0 +1,46 @@
+* {
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+h1{
+    color: #333538;;
+}
+
+.container-dados-clientes {
+    margin: 0px;
+    padding: 10px;
+    gap: 16px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    border: 1px solid #A0AEC0;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 12px;
+}
+
+span {
+    display: block;
+   
+}
+
+label{
+    display: block;
+    float: left;
+    width: 150px;
+}
+
+button {
+    background-color: #A0AEC0;
+    border: 1px solid  #737374;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover{
+    transition: 1s;
+    background-color:rgb(86, 148, 55);;
+    color:  #2f3033;
+}
