@@ -41,10 +41,8 @@ const NewClient = () => {
     console.log(cliente)
   }
 
-
   function handleButtonClick() {
     if (cepCliente.length === 8) {
-
       console.log(cepCliente)
 
       axios.get(`${baseUrl}${cepCliente}/json/`)
@@ -56,7 +54,6 @@ const NewClient = () => {
           setCidade(api.localidade);
           setUf(api.uf);
           setRua(api.logradouro);
-
         })
         .catch((error) => {
           console.error(error);
@@ -65,7 +62,6 @@ const NewClient = () => {
     else {
       console.log("Deu ruim")
     }
-
   }
 
   return (
@@ -132,7 +128,7 @@ const NewClient = () => {
           <input id="numeroCliente" name="numero" type="text" value={numero} onChange={(event) => setNumero(event.target.value)}/>
         </span>
         </div>
-        
+
         <button onClick={handleButtonForm}>Enviar</button>
         
       </form>

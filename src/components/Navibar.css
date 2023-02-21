@@ -1,16 +1,19 @@
 * {
     margin: 0;
     padding: 5px;
-    
 }
+
 nav{
-   
     height: 100%;
- 
-    
 }
+
+.container-menu{
+    background-color: rgb(145, 183, 221);
+    border-radius: 6px;
+    height: 100%;
+}
+
 ul{
     display: grid;
     grid-template-rows: auto;
-
 }

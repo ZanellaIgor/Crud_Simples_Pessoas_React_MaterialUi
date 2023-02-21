@@ -1,4 +1,8 @@
+body{
+    background-color: rgb(221, 225, 247);
+}
 .App{
+    margin-top: 50px;
     display: grid;
     grid-template-columns: 200px 1fr;
 }
