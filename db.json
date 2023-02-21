@@ -1,0 +1,98 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "Roberto",
+      "cpfCnpj": "256879",
+      "ie": 156,
+      "celular": 568,
+      "telefone": 454,
+      "rua": "Rua Alberto",
+      "complemento": "casa 4",
+      "numero": 5123,
+      "bairro": "Centro",
+      "cidade": "São Carlos",
+      "uf": "RS"
+    },
+    {
+      "id": 2,
+      "nome": "Gaulês",
+      "cpfCnpj": "0222333",
+      "ie": "155566",
+      "celular": 54981442437,
+      "telefone": 5433215287,
+      "rua": "Rua Alberto",
+      "complemento": "",
+      "numero": 5456,
+      "bairro": "Centro",
+      "cidade": "São Carlos",
+      "uf": "RS"
+    },
+    {
+      "nome": "Gaulês",
+      "cpfCnpj": "0222333",
+      "ie": "155566",
+      "celular": 54981442437,
+      "telefone": 5433215287,
+      "rua": "Rua Alberto",
+      "complemento": "",
+      "numero": 5456,
+      "bairro": "Centro",
+      "cidade": "São Carlos",
+      "uf": "RS",
+      "id": 3
+    },
+    {
+      "nome": "Renato Portal LUpe",
+      "cpfCnpj": "022233356",
+      "ie": "ISENTO",
+      "celular": 549814424375,
+      "telefone": 5433215287,
+      "rua": "Rua Alberto",
+      "complemento": "12",
+      "numero": 24,
+      "bairro": "Centro",
+      "cidade": "BRAGANÇA",
+      "uf": "RJ",
+      "id": 4
+    },
+    {
+      "nome": "Renato Portal LUpe",
+      "cpfCnpj": "022233356",
+      "ie": "ISENTO",
+      "celular": 549814424375,
+      "telefone": 5433215287,
+      "rua": "Rua Alberto",
+      "complemento": "12",
+      "numero": 24,
+      "bairro": "Centro",
+      "cidade": "BRAGANÇA",
+      "uf": "RJ",
+      "id": 5
+    },
+    {
+      "nome": "TESTE",
+      "cpfCnpj": "456",
+      "ie": "ISENTO",
+      "celular": "45655",
+      "telefone": "5595",
+      "rua": "Rua Alberto Roese",
+      "complemento": "5",
+      "numero": "38",
+      "bairro": "Planalto",
+      "cidade": "Caxias do Sul",
+      "uf": "RS",
+      "id": 6
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
