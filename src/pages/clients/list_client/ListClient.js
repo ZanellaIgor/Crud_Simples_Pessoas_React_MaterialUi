@@ -21,12 +21,13 @@ const ListClient = () => {
   },[setClientes])
 
   return (
-    <div>
+    <div className='container-list-client'>
       <h1>Clientes:</h1>
       
       <table className='container-tabela'>
         <thead>
           <tr>
+            <th></th>
             <th>Nome: </th>
             <th>CPF/CNPJ: </th>
             <th>Cidade: </th>
@@ -36,6 +37,7 @@ const ListClient = () => {
         <tbody>
           {clientes.map(cliente => (
             <tr key={cliente.id} className="container-cliente">
+              <td>Edit</td>
               <td>{cliente.nome}</td>
               <td>{cliente.cpfCnpj}</td>
               <td>{cliente.cidade}</td>

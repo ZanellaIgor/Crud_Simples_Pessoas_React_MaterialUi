@@ -9,13 +9,12 @@ const Navbar = () => {
       <div className='container-menu'>
         <h1>Menu</h1>
         <ul>
-          <ol><Link to="/">Home</Link></ol>
-          <ol><Link to='/pages/clients/list_client'>Lista de Clientes</Link></ol>
-          <ol><Link to="/pages/clients/new_client">Adicionar Clientes</Link></ol>
+        <Link to="/"><ol>Home</ol></Link>
+        <Link to='/pages/clients/list_client'> <ol>Lista de Clientes</ol></Link>
+        <Link to="/pages/clients/new_client"> <ol>Adicionar Clientes</ol></Link>
         </ul>
       </div>
     </nav>
-
   )
 }
 

@@ -4,8 +4,8 @@ import "./Header.css"
 const Header = () => {
   return (
     <header>
-        <h1>Texto</h1>
-        <p>Header</p>
+        
+        <p>Cabeçalho</p>
 
     </header>
   )

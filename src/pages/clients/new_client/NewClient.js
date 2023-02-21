@@ -1,12 +1,11 @@
 import React from 'react'
 import axios from 'axios';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import './NewClient.css'
 
 const NewClient = () => {
   const url = "http://localhost:3000/clientes/"
-
 
   const baseUrl = `https://viacep.com.br/ws/`
   const [cepCliente, setCepCliente] = useState('');
@@ -25,9 +24,15 @@ const NewClient = () => {
 
   const [endereco, setEndereco] = useState({});
 
+  useEffect(() => {
+    if (cepCliente.length === 8) {
+      addClient();
+    }
+  }, [cepCliente]);
+
+
   function handleButtonForm(e) {
     e.preventDefault()
-
     const cliente = {
       nome,
       cpfCnpj,
@@ -53,31 +58,42 @@ const NewClient = () => {
     console.log(cliente)
   }
 
-  function handleButtonClick() {
-    if (cepCliente.length === 8) {
-      console.log(cepCliente)
+  const addClient = (() => {
+    axios.get(`${baseUrl}${cepCliente}/json/`)
 
-      axios.get(`${baseUrl}${cepCliente}/json/`)
-        .then((response) => {
-          console.log("Deu bom")
-          const api = response.data
-          setEndereco(api);
-          setBairro(api.bairro);
-          setCidade(api.localidade);
-          setUf(api.uf);
-          setRua(api.logradouro);
-        })
-        .catch((error) => {
-          console.error(error);
-        })
+      .then((response) => {
+
+        console.log("Deu bom")
+        const api = response.data
+        setEndereco(api);
+        setBairro(api.bairro);
+        setCidade(api.localidade);
+        setUf(api.uf);
+        setRua(api.logradouro);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+  })
+
+  function handleButtonClick() {
+    console.log(cepCliente)
+    const cepNumeros = cepCliente.replace(/\D/g, "");
+    console.log(cepNumeros)
+    setTimeout(() => {
+      setCepCliente(cepNumeros);
+    }, 1000);
+    console.log(cepCliente)
+    if (cepCliente.length === 8) {
+      addClient();
     }
     else {
-      console.log("Deu ruim")
+      alert("Favor Verificar o CEP")
     }
   }
 
   return (
-    <div >
+    <div className='container-new-client' >
       <h1>Adicione um Cliente:</h1>
       <form className="container-form">
         <div className='container-dados-clientes'>

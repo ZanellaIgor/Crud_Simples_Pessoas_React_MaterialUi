@@ -125,6 +125,20 @@
       "bairro": "Bela Vista",
       "cidade": "Carandiru",
       "uf": "RJ"
+    },
+    {
+      "nome": "TESTE",
+      "cpfCnpj": "02645523321",
+      "ie": "55696969",
+      "celular": "5491322",
+      "telefone": "123",
+      "rua": "123",
+      "complemento": "SN",
+      "numero": "SN",
+      "bairro": "Centro",
+      "cidade": "Caxias do Sul",
+      "uf": "RS",
+      "id": 10
     }
   ],
   "comments": [

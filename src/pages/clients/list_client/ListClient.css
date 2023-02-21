@@ -1,4 +1,8 @@
 
+.container-list-client{
+    margin: 20px;
+    padding: 10px;
+}
 .container-tabela {
     color: black;
     background-color: rgb(147, 156, 170);
@@ -7,8 +11,16 @@
     align-items: center;
     width: 100%;
 }
+
+tr{
+    display: grid;
+    grid-template-columns: .5fr 1.5fr 1fr 1fr 1fr;
+}
+
+
 .container-cliente {
     background-color: rgb(130, 130, 184);
-    border-spacing: 0px;
-    border-collapse: inherit;
+    align-items: center;
+    align-content: space-around;
+    
 }

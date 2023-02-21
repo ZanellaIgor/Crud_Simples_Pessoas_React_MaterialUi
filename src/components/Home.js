@@ -8,8 +8,8 @@ const Home = () => {
     <section> 
       <h1>Seja bem vindo! Faça um tour XD</h1>
       <div className="container-link-home">
-      <h3><Link to='/pages/clients/list_client'>Lista de Clientes</Link></h3>
-      <h3><Link to="/pages/clients/new_client">Adicionar Clientes</Link></h3>
+      <Link to='/pages/clients/list_client'><h3>Lista de Clientes</h3></Link>
+      <Link to="/pages/clients/new_client"><h3>Adicionar Clientes</h3></Link>
       </div>
     </section>
   )
