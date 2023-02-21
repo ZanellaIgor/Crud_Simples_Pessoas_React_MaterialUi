@@ -1,0 +1,20 @@
+section{
+    margin: 10px;
+    padding: 6px;
+    
+}
+
+.container-link-home{
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    align-items: center; 
+}
+
+h3{
+    padding: 20px;    
+    border: 1px solid red;
+    border-radius: 6px;
+    
+    
+}

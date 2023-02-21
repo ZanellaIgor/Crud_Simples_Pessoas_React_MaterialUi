@@ -11,7 +11,7 @@ const Navbar = () => {
         <ul>
           <ol><Link to="/">Home</Link></ol>
           <ol><Link to='/pages/clients/list_client'>Lista de Clientes</Link></ol>
-          <ol><Link to="/pages/clients/new_client">Clientes</Link></ol>
+          <ol><Link to="/pages/clients/new_client">Adicionar Clientes</Link></ol>
         </ul>
       </div>
     </nav>

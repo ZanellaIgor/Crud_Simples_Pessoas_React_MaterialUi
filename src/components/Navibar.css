@@ -1,19 +1,28 @@
-* {
-    margin: 0;
-    padding: 5px;
-}
 
 nav{
+    margin-left:0px;
+    padding: 0px;
     height: 100%;
+    background-color: rgb(145, 183, 221);
+    border: 1px solid black;
+    border-radius: 0px 20px 20px 0px;
 }
 
 .container-menu{
-    background-color: rgb(145, 183, 221);
-    border-radius: 6px;
+    margin:5px;
+    padding: 5px;
+    
     height: 100%;
 }
 
 ul{
     display: grid;
     grid-template-rows: auto;
+}
+
+ol{
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: aliceblue;
 }
