@@ -1,8 +1,7 @@
 body{
     background-color: rgb(221, 225, 247);
 }
-.App{
-    margin-top: 50px;
+.paginacao{
     display: grid;
     grid-template-columns: 200px 1fr;
 }

@@ -1,50 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import "./ListClient.css"
 
 
 const ListClient = () => {
-  const clientes = [{
-    id: 1,
-    nome: "Roberval",
-    cpfCnpj: 123456889,
-    ie: "ISENTO",
-    celular: 54953542,
-    telefone: 32155,
-    rua: "Rua das Graças",
-    complemento: 12321,
-    numero: 123,
-    bairro: "Centro",
-    cidade: "São Pedro",
-    uf: "SC",
-  }, {
-    id: 2,
-    nome: "Ig",
-    cpfCnpj: 553456889,
-    ie: "ISENTO",
-    celular: 115953542,
-    telefone: 32155,
-    rua: "Rua das Graças",
-    complemento: 12321,
-    numero: 125,
-    bairro: "Bragantino",
-    cidade: "São Paulo",
-    uf: "SP",
-  },
-  {
-    id: 3,
-    nome: "Jacaré",
-    cpfCnpj: 553456889,
-    ie: 1235485,
-    celular: 115953542,
-    telefone: 5132155,
-    rua: "Rua das Marechal Floriano",
-    complemento: 12321,
-    numero: 125,
-    bairro: "Bela Vista",
-    cidade: "Carandiru",
-    uf: "RJ",
-  }
-  ]
+
+  const url = "http://localhost:3000/clientes/"
+  const [clientes, setClientes] = useState([]);
+  
+
+  useEffect(() => {
+    axios.get(url)
+    .then((response)=>{
+      setClientes(response.data)
+
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  },[setClientes])
+
   return (
     <div>
       <h1>Clientes:</h1>
