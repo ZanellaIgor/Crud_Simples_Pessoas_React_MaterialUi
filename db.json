@@ -139,6 +139,20 @@
       "cidade": "Caxias do Sul",
       "uf": "RS",
       "id": 10
+    },
+    {
+      "nome": "Padre Adir",
+      "cpfCnpj": "02655",
+      "ie": "123456",
+      "celular": "555",
+      "telefone": "45656",
+      "rua": "Rua Alberto Roese",
+      "complemento": "523",
+      "numero": "69",
+      "bairro": "Planalto",
+      "cidade": "Caxias do Sul",
+      "uf": "RS",
+      "id": 12
     }
   ],
   "comments": [

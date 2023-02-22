@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
 import axios from 'axios'
 import "./ListClient.css"
 
@@ -37,7 +38,7 @@ const ListClient = () => {
         <tbody>
           {clientes.map(cliente => (
             <tr key={cliente.id} className="container-cliente">
-              <td>Edit</td>
+              <td> <AiFillEdit className="edit-cliente"/> <AiFillDelete className="delete-cliente"/></td>
               <td>{cliente.nome}</td>
               <td>{cliente.cpfCnpj}</td>
               <td>{cliente.cidade}</td>

@@ -10,8 +10,8 @@ const Navbar = () => {
         <h1>Menu</h1>
         <ul>
         <Link to="/"><ol>Home</ol></Link>
-        <Link to='/pages/clients/list_client'> <ol>Lista de Clientes</ol></Link>
-        <Link to="/pages/clients/new_client"> <ol>Adicionar Clientes</ol></Link>
+        <Link to='/pages/clients/list_client'><ol>Lista de Clientes</ol></Link>
+        <Link to="/pages/clients/new_client"><ol>Adicionar Clientes</ol></Link>
         </ul>
       </div>
     </nav>

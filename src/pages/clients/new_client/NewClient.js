@@ -24,13 +24,6 @@ const NewClient = () => {
 
   const [endereco, setEndereco] = useState({});
 
-  useEffect(() => {
-    if (cepCliente.length === 8) {
-      addClient();
-    }
-  }, [cepCliente]);
-
-
   function handleButtonForm(e) {
     e.preventDefault()
     const cliente = {
@@ -59,7 +52,7 @@ const NewClient = () => {
   }
 
   const addClient = (() => {
-    axios.get(`${baseUrl}${cepCliente}/json/`)
+    axios.get(`${baseUrl}${(cepCliente.replace(/\D/g, ""))}/json/`)
 
       .then((response) => {
 
@@ -72,19 +65,17 @@ const NewClient = () => {
         setRua(api.logradouro);
       })
       .catch((error) => {
-        console.error(error);
+        alert(error);
       })
   })
-
+  {/*Botão enviar*/ }
   function handleButtonClick() {
-    console.log(cepCliente)
     const cepNumeros = cepCliente.replace(/\D/g, "");
-    console.log(cepNumeros)
-    setTimeout(() => {
-      setCepCliente(cepNumeros);
-    }, 1000);
+
+    setCepCliente(cepNumeros);
     console.log(cepCliente)
-    if (cepCliente.length === 8) {
+
+    if (cepNumeros.length === 8) {
       addClient();
     }
     else {
@@ -157,7 +148,7 @@ const NewClient = () => {
           </span>
         </div>
 
-        <button onClick={handleButtonForm}>Enviar</button>
+        <button id='botao-envia-cliente' onClick={handleButtonForm}>Enviar</button>
 
       </form>
     </div>

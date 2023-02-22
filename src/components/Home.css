@@ -12,13 +12,17 @@ section{
 
 h3{
     display: grid;
-    padding: 20px;    
+    padding: 20px; 
     border: 1px solid rgb(82, 79, 79);
     border-radius: 6px;
+    background-color: #649ae2;
     justify-content: space-around;
     width: 50%;
-    background-color: rgb(94, 125, 151);
-    color: blue;
-    font-family: 'Times New Roman', Times, serif;
-    
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h3:hover{
+    transition: .5s;
+    scale: 1.1;
 }
