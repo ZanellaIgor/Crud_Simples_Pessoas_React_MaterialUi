@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from "react";
 
+import { useForm } from "react-hook-form"
+
 import './NewClient.css'
 
 const NewClient = () => {
@@ -22,10 +24,14 @@ const NewClient = () => {
   const [numero, setNumero] = useState('');
 
 
+  const {
+    register,
+    handleSubmit
+  } = useForm();
+
   const [endereco, setEndereco] = useState({});
 
   function handleButtonForm(e) {
-    e.preventDefault()
     const cliente = {
       nome,
       cpfCnpj,
@@ -86,16 +92,16 @@ const NewClient = () => {
   return (
     <div className='container-new-client' >
       <h1>Adicione um Cliente:</h1>
-      <form className="container-form">
+      <form className="container-form"  onSubmit={handleButtonForm}>
         <div className='container-dados-clientes'>
           <span>
             <label htmlFor='nome'>Nome: </label>
-            <input id="nomeCliente" name="nome" type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
+            <input id="nomeCliente" name="nome" type="text" value={nome} onChange={(event) => setNome(event.target.value)}  required/>
           </span>
 
           <span>
             <label htmlFor='cnpjcpf'>CPF/CNPJ: </label>
-            <input id="cnpjCpfCliente" name="cnpjcpf" type="text" value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)} />
+            <input id="cnpjCpfCliente" name="cnpjcpf" type="text" value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}  required/>
           </span>
 
           <span>
@@ -148,7 +154,7 @@ const NewClient = () => {
           </span>
         </div>
 
-        <button id='botao-envia-cliente' onClick={handleButtonForm}>Enviar</button>
+        <button id='botao-envia-cliente' type="submit">Enviar</button>
 
       </form>
     </div>

@@ -12,13 +12,14 @@
     margin: 10px;
     font-size: 100%;
     width: 100%;
+    
 }
 
 tr{
     display: grid;
     grid-template-columns: .5fr 1.5fr 1fr 1fr 1fr;
+    
 }
-
 
 .container-cliente {
     background-color: #649ae2;

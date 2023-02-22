@@ -10,7 +10,6 @@ body{
     box-sizing: border-box;
     padding: 0px;
     background-color: rgb(221, 225, 247);
-    height: 100%;
 }
 .paginacao{
     display: grid;

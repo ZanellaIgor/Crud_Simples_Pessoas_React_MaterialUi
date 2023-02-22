@@ -45,12 +45,8 @@ const ListClient = () => {
               <td>{cliente.uf}</td>
             </tr>
           ))}
-
         </tbody>
       </table>
-      
-
-      
     </div>
   )
 }
