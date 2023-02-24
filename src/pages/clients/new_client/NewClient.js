@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from "react";
 
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 
 import './NewClient.css'
 
@@ -22,15 +22,22 @@ const NewClient = () => {
   const [ie, setIe] = useState('');
   const [complemento, setComplemento] = useState('');
   const [numero, setNumero] = useState('');
-
-
   const {
     register,
-    handleSubmit
+    handleSubmit, formState: {errors} 
   } = useForm();
 
   const [endereco, setEndereco] = useState({});
 
+
+  const validateinEst = (value) => {
+    if (value !== "ISENTO" && isNaN(Number(value))) {
+      return "Insira um número válido ou ISENTO";
+    }
+    return true;
+  }
+
+   {/*Adicionando cliente*/}
   function handleButtonForm(e) {
     const cliente = {
       nome,
@@ -57,12 +64,12 @@ const NewClient = () => {
     console.log(cliente)
   }
 
-  const addClient = (() => {
+  {/*Informando o CEP pela pesquisa*/}
+  const addEndereco = (() => {
     axios.get(`${baseUrl}${(cepCliente.replace(/\D/g, ""))}/json/`)
 
       .then((response) => {
 
-        console.log("Deu bom")
         const api = response.data
         setEndereco(api);
         setBairro(api.bairro);
@@ -74,7 +81,8 @@ const NewClient = () => {
         alert(error);
       })
   })
-  {/*Botão enviar*/ }
+  
+  
   function handleButtonClick() {
     const cepNumeros = cepCliente.replace(/\D/g, "");
 
@@ -82,7 +90,7 @@ const NewClient = () => {
     console.log(cepCliente)
 
     if (cepNumeros.length === 8) {
-      addClient();
+      addEndereco();
     }
     else {
       alert("Favor Verificar o CEP")
@@ -92,7 +100,7 @@ const NewClient = () => {
   return (
     <div className='container-new-client' >
       <h1>Adicione um Cliente:</h1>
-      <form className="container-form"  onSubmit={handleButtonForm}>
+      <form className="container-form"  onSubmit={handleSubmit(handleButtonForm)}>
         <div className='container-dados-clientes'>
           <span>
             <label htmlFor='nome'>Nome: </label>
@@ -101,12 +109,16 @@ const NewClient = () => {
 
           <span>
             <label htmlFor='cnpjcpf'>CPF/CNPJ: </label>
-            <input id="cnpjCpfCliente" name="cnpjcpf" type="text" value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}  required/>
+            <input id="cnpjCpfCliente" name="cnpjcpf" type="text" 
+            value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}  required
+            />
           </span>
 
           <span>
-            <label htmlFor='ie'>Inscrição Estadual: </label>
-            <input id="ieCliente" name="ie" type="text" value={ie} onChange={(event) => setIe(event.target.value)} />
+            <label htmlFor='inEst'>Inscrição Estadual: </label>
+            <input id="ieCliente" name="inEst" type="text" {...register("inEst", { validate: validateinEst })} required value={ie} onChange={(event) => setIe(event.target.value)}
+             />
+            {errors.inEst && <p>{errors.inEst.message}</p>}
           </span>
 
           <span>
