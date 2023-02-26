@@ -24,20 +24,27 @@ const NewClient = () => {
   const [numero, setNumero] = useState('');
   const {
     register,
-    handleSubmit, formState: {errors} 
+    handleSubmit, formState: { errors }
   } = useForm();
 
   const [endereco, setEndereco] = useState({});
 
-
-  const validateinEst = (value) => {
+  const validateCnpjcpf = (value) => {
+    if (isNaN(Number(value))) {
+      return "Insira um número válido";
+    } else if(value.length !==11 || value.length !== 14){
+      return "Está faltando digitos, verifique!"
+    }
+    return true;
+  }
+  const validateInEst = (value) => {
     if (value !== "ISENTO" && isNaN(Number(value))) {
       return "Insira um número válido ou ISENTO";
     }
     return true;
   }
 
-   {/*Adicionando cliente*/}
+  {/*Adicionando cliente*/ }
   function handleButtonForm(e) {
     const cliente = {
       nome,
@@ -64,7 +71,7 @@ const NewClient = () => {
     console.log(cliente)
   }
 
-  {/*Informando o CEP pela pesquisa*/}
+  {/*Informando o CEP pela pesquisa*/ }
   const addEndereco = (() => {
     axios.get(`${baseUrl}${(cepCliente.replace(/\D/g, ""))}/json/`)
 
@@ -81,8 +88,7 @@ const NewClient = () => {
         alert(error);
       })
   })
-  
-  
+
   function handleButtonClick() {
     const cepNumeros = cepCliente.replace(/\D/g, "");
 
@@ -100,24 +106,28 @@ const NewClient = () => {
   return (
     <div className='container-new-client' >
       <h1>Adicione um Cliente:</h1>
-      <form className="container-form"  onSubmit={handleSubmit(handleButtonForm)}>
+      <form className="container-form" onSubmit={handleSubmit(handleButtonForm)}>
         <div className='container-dados-clientes'>
           <span>
             <label htmlFor='nome'>Nome: </label>
-            <input id="nomeCliente" name="nome" type="text" value={nome} onChange={(event) => setNome(event.target.value)}  required/>
+            <input id="nomeCliente" name="nome" type="text" value={nome} onChange={(event) => setNome(event.target.value)} required />
           </span>
 
           <span>
             <label htmlFor='cnpjcpf'>CPF/CNPJ: </label>
-            <input id="cnpjCpfCliente" name="cnpjcpf" type="text" 
-            value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}  required
+            <input id="cnpjCpfCliente" name="cnpjcpf" type="text"
+              {...register("cnpjcpf", { validate: validateCnpjcpf })} required
+              value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}
             />
+            {errors.cnpjcpf && <p>{errors.cnpjcpf.message}</p>}
           </span>
 
           <span>
             <label htmlFor='inEst'>Inscrição Estadual: </label>
-            <input id="ieCliente" name="inEst" type="text" {...register("inEst", { validate: validateinEst })} required value={ie} onChange={(event) => setIe(event.target.value)}
-             />
+            <input id="ieCliente" name="inEst" type="text"
+              {...register("inEst", { validate: validateInEst })} required
+              value={ie} onChange={(event) => setIe(event.target.value)}
+            />
             {errors.inEst && <p>{errors.inEst.message}</p>}
           </span>
 
@@ -132,37 +142,37 @@ const NewClient = () => {
 
           <span>
             <label htmlFor='cep'>CEP</label>
-            <input id="cepClienteid" name="cep" type="text" value={cepCliente} onChange={(event) => setCepCliente(event.target.value)} /><button type="button" onClick={handleButtonClick}>Pesquisar</button>
+            <input id="cepClienteid" name="cep" type="text" required value={cepCliente} onChange={(event) => setCepCliente(event.target.value)} /><button type="button" onClick={handleButtonClick}>Pesquisar</button>
           </span>
 
           <span>
             <label htmlFor='cidade'>Cidade: </label>
-            <input id="cidadeCliente" name="cidade" type="text" value={cidade} onChange={(event) => setCidade(event.target.value)} />
+            <input id="cidadeCliente" name="cidade" type="text" required value={cidade} onChange={(event) => setCidade(event.target.value)} />
           </span>
 
           <span>
             <label htmlFor='bairro'>Bairro: </label>
-            <input id="bairroCliente" name="bairro" type="text" value={bairro} onChange={(event) => setBairro(event.target.value)} />
+            <input id="bairroCliente" name="bairro" type="text" required value={bairro} onChange={(event) => setBairro(event.target.value)} />
           </span>
 
           <span>
             <label htmlFor='estado'>Estado: </label>
-            <input id="estadoCliente" name="estado" type="text" value={uf} onChange={(event) => setUf(event.target.value)} />
+            <input id="estadoCliente" name="estado" type="text" required value={uf} onChange={(event) => setUf(event.target.value)} />
           </span>
 
           <span>
             <label htmlFor='rua'>Rua: </label>
-            <input id="ruaCliente" name="rua" type="text" value={rua} onChange={(event) => setRua(event.target.value)} />
+            <input id="ruaCliente" name="rua" type="text" required value={rua} onChange={(event) => setRua(event.target.value)} />
           </span>
 
           <span>
             <label htmlFor='complemento'>Complemento: </label>
-            <input id="complementoCliente" name="complemento" type="text" value={complemento} onChange={(event) => setComplemento(event.target.value)} />
+            <input id="complementoCliente" name="complemento" type="text" required value={complemento} onChange={(event) => setComplemento(event.target.value)} />
           </span>
 
           <span>
             <label htmlFor='numero'>Número: </label>
-            <input id="numeroCliente" name="numero" type="text" value={numero} onChange={(event) => setNumero(event.target.value)} />
+            <input id="numeroCliente" name="numero" type="text" required value={numero} onChange={(event) => setNumero(event.target.value)} />
           </span>
         </div>
 

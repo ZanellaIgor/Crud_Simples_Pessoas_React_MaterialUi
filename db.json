@@ -237,48 +237,6 @@
       "cidade": "Caxias do Sul",
       "uf": "RS",
       "id": 19
-    },
-    {
-      "nome": "asd",
-      "cpfCnpj": "asd",
-      "ie": "123456789",
-      "celular": "asd",
-      "telefone": "asd",
-      "rua": "",
-      "complemento": "",
-      "numero": "",
-      "bairro": "",
-      "cidade": "",
-      "uf": "",
-      "id": 20
-    },
-    {
-      "nome": "asd",
-      "cpfCnpj": "asd",
-      "ie": "123456789",
-      "celular": "asd",
-      "telefone": "asd",
-      "rua": "",
-      "complemento": "",
-      "numero": "",
-      "bairro": "",
-      "cidade": "",
-      "uf": "",
-      "id": 21
-    },
-    {
-      "nome": "1",
-      "cpfCnpj": "2",
-      "ie": "1",
-      "celular": "1",
-      "telefone": "1",
-      "rua": "",
-      "complemento": "1",
-      "numero": "",
-      "bairro": "",
-      "cidade": "1",
-      "uf": "1",
-      "id": 22
     }
   ],
   "comments": [
