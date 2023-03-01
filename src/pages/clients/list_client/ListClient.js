@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 import axios from 'axios'
+
 import "./ListClient.css"
+import { Link } from 'react-router-dom'
 
 
 const ListClient = () => {
@@ -9,10 +11,6 @@ const ListClient = () => {
   const url = "http://localhost:3000/clientes/"
 
   const [clientes, setClientes] = useState([]);
-
-  const handleButtonEdit = (id) => {
-    alert(id)
-  }
 
   const handleButtonDelete = (id) => {
     if (window.confirm('Tem certeza que deseja deletar este Cliente?')) {
@@ -33,7 +31,7 @@ const ListClient = () => {
       .catch((error) => {
         console.log(error);
       })
-  }, [clientes])
+  }, [])
 
   return (
     <div className='container-list-client'>
@@ -53,8 +51,12 @@ const ListClient = () => {
           {clientes.map(cliente => (
             <tr key={cliente.id} className="container-cliente">
               <td className='container-button-action'>
-                <button className='container-button-edit' onClick={() => handleButtonEdit(cliente.id)}><AiFillEdit /></button>
-                <button className="container-delete-cliente" onClick={() => handleButtonDelete(cliente.id)}><AiFillDelete /></button ></td>
+                <Link to={`/pages/clients/${cliente.id}/edit_client`}>
+                <button className='container-button-edit'><AiFillEdit />
+                </button></Link>
+                <button className="container-delete-cliente" onClick={() => handleButtonDelete(cliente.id)}>
+                  <AiFillDelete /></button >
+                </td>
               <td>{cliente.nome}</td>
               <td>{cliente.cpfCnpj}</td>
               <td>{cliente.cidade}</td>

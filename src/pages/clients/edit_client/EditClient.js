@@ -1,13 +1,39 @@
-import React from 'react';
-import axios from 'axios';
-import { useState, useEffect } from "react";
-
+import React from 'react'
+import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import NewClient from '../new_client/NewClient';
 
-import './NewClient.css'
 
-const NewClient = () => {
-  const url = "http://localhost:3000/clientes/"
+const EditClient = () => {
+  const { id } = useParams();
+  const url = "http://localhost:3000/clientes/" + id
+  console.log(id)
+
+  useEffect(() => {
+    axios.get(url)
+      .then((response) => {
+        const api = response.data;
+        console.log(response.data);
+        setNome(api.nome);
+        setCpfCnpj(api.cpfCnpj);
+        setIe(api.ie);
+        setCep(api.cep)
+        setCelular(api.celular)
+        setTelefone(api.telefone)
+        setRua(api.rua)
+        setComplemento(api.complemento)
+        setNumero(api.numero)
+        setBairro(api.bairro)
+        setCidade(api.cidade)
+        setUf(api.uf)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, [])
+
 
   const baseUrl = `https://viacep.com.br/ws/`
   const [cep, setCep] = useState('');
@@ -43,9 +69,8 @@ const NewClient = () => {
       return "Poucos Caracteres informados"
      } 
   }
-
-  const validateInEst = (value) => {
-    if (value !== "ISENTO" && isNaN(Number(value))) {
+  const validateInEst = (ie) => {
+    if (ie !== "ISENTO" && isNaN(Number(ie))) {
       return "Insira um número válido ou ISENTO";
     }
     return true;
@@ -69,7 +94,7 @@ const NewClient = () => {
     }
     console.log(cliente)
 
-    axios.post(url, cliente)
+    axios.patch(url, cliente)
       .then(response => {
         console.log(response.data)
         this.setState(cliente)
@@ -100,7 +125,7 @@ const NewClient = () => {
     const cepNumeros = cep.replace(/\D/g, "");
 
     setCep(cepNumeros);
-    
+
 
     if (cepNumeros.length === 8) {
       addEndereco();
@@ -109,10 +134,9 @@ const NewClient = () => {
       alert("Favor Verificar o CEP")
     }
   }
-
   return (
-    <div className='container-new-client' >
-      <h1>Adicione um Cliente:</h1>
+    <div>
+      <h1>Edite</h1>
       <form className="container-form" onSubmit={handleSubmit(handleButtonForm)}>
         <div className='container-dados-clientes'>
           <span>
@@ -122,7 +146,7 @@ const NewClient = () => {
 
           <span>
             <label htmlFor='cnpjcpf'>CPF/CNPJ: </label>
-            <input id="cnpjCpfCliente" name="cnpjcpf" type="text"
+            <input id="cnpjcpfClient" name="cnpjcpf" type="text"
               {...register("cnpjcpf", { validate: validateCnpjcpf })} required
               value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}
             />
@@ -190,4 +214,4 @@ const NewClient = () => {
   )
 }
 
-export default NewClient
+export default EditClient
