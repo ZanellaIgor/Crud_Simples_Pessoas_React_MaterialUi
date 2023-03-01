@@ -1,0 +1,75 @@
+.container-new-client {
+    margin: 20px;
+}
+
+h1 {
+    color: #333538;
+}
+
+.container-dados-clientes {
+    margin: 0px;
+    padding: 10px;
+    gap: 16px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    border: 1px solid #A0AEC0;
+    border-radius: 6px;
+    background-color: #649ae2;
+    font-size: 16px;
+    line-height: 12px;
+
+}
+
+span {
+    display: block;
+    width: 385px;
+}
+
+input {
+    border: none;
+    border-radius: 4px;
+    width: 150px;
+}
+
+
+label {
+    display: block;
+    float: left;
+    width: 150px;
+}
+
+button {
+    background-color: #A0AEC0;
+    border: 1px solid #737374;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    transition: 1s;
+    background-color: rgb(8, 11, 216);
+    color: white;
+    scale: 1.02;
+}
+
+#botao-envia-cliente {
+    background-color: rgb(64, 121, 207);
+    float: right;
+    height: 40px;
+    width: 80px;
+    margin: 10px;
+
+}
+
+#botao-envia-cliente:hover {
+    color: white;
+    transition: 1s;
+    background-color: rgb(8, 11, 216);
+}
+P{
+    color: red;
+    margin: 4px;
+    padding: 4px;
+}

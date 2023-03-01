@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import './NewClient.css'
 
 const NewClient = () => {
-  const url = "http://localhost:3000/clientes/"
+  const url = "http://localhost:3001/clientes/"
 
   const baseUrl = `https://viacep.com.br/ws/`
   const [cep, setCep] = useState('');
@@ -29,19 +29,19 @@ const NewClient = () => {
 
   const [endereco, setEndereco] = useState({});
 
-  const validateCnpjcpf = (value) => { 
+  const validateCnpjcpf = (value) => {
     console.log(value.length)
     if (isNaN(Number(value))) {
       return "Insira um número válido";
-    } else if(value.length == 11 || value.length == 14){
+    } else if (value.length == 11 || value.length == 14) {
       return true
     }
-    else if(value.length > 14){
+    else if (value.length > 14) {
       return "Mais caracteres que o necessário"
-     }
-     else if(value.length < 11){
+    }
+    else if (value.length < 11) {
       return "Poucos Caracteres informados"
-     } 
+    }
   }
 
   const validateInEst = (value) => {
@@ -49,6 +49,21 @@ const NewClient = () => {
       return "Insira um número válido ou ISENTO";
     }
     return true;
+  }
+
+  function limpaDados() {
+    setNome('');
+    setCpfCnpj('');
+    setIe('');
+    setCep('')
+    setCelular('')
+    setTelefone('')
+    setRua('')
+    setComplemento('')
+    setNumero('')
+    setBairro('')
+    setCidade('')
+    setUf('')
   }
 
   {/*Adicionando cliente*/ }
@@ -73,6 +88,7 @@ const NewClient = () => {
       .then(response => {
         console.log(response.data)
         this.setState(cliente)
+        limpaDados()
 
       })
       .catch(error => console.log(error))
@@ -100,7 +116,7 @@ const NewClient = () => {
     const cepNumeros = cep.replace(/\D/g, "");
 
     setCep(cepNumeros);
-    
+
 
     if (cepNumeros.length === 8) {
       addEndereco();
@@ -140,11 +156,11 @@ const NewClient = () => {
 
           <span>
             <label htmlFor='telefone'>Telefone: </label>
-            <input id="telCliente" name="telefone" type="text" value={telefone} onChange={(event) => setTelefone(event.target.value)} />
+            <input id="telCliente" name="telefone" type="cel" value={telefone} onChange={(event) => setTelefone(event.target.value)} />
           </span>
           <span>
             <label htmlFor='celular'>Celular: </label>
-            <input id="celularCliente" name="celular" type="text" value={celular} onChange={(event) => setCelular(event.target.value)} />
+            <input id="celularCliente" name="celular" type="cel" value={celular} onChange={(event) => setCelular(event.target.value)} />
           </span>
 
           <span>

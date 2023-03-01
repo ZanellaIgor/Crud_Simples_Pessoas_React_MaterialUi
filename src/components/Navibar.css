@@ -7,6 +7,7 @@ nav{
     border: 1px solid black;
     border-radius: 0px 20px 20px 0px;
     height: 90vh;
+    width: 30vh;
 }
 
 .container-menu{
@@ -16,22 +17,30 @@ nav{
     height: 100%;
 }
 
-ul{
+.container-nav-menu{
     display: grid;
     grid-template-rows: auto;
 }
 
-ol{
+.container-lista-nav{
     margin: 2px;
     padding: 8px;
     border: 1px solid black;
     border-radius: 8px;
     background-color: aliceblue;
+    color: black;
 }
-ol:hover{
-    background-color: cornflowerblue;
+
+.container-lista-nav:hover{
     transition: .5s;
     transform: scale(1.05);
     font-family: Arial, Helvetica, sans-serif;
     color: black;
 }
+
+.container-icon{
+    display: inline;
+    float: right;
+    color: rgb(145, 183, 221);
+}
+

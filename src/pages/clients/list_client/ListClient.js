@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 const ListClient = () => {
 
-  const url = "http://localhost:3000/clientes/"
+  const url = "http://localhost:3001/clientes/"
 
   const [clientes, setClientes] = useState([]);
 
@@ -36,7 +36,6 @@ const ListClient = () => {
   return (
     <div className='container-list-client'>
       <h1>Clientes:</h1>
-
       <table className='container-tabela'>
         <thead>
           <tr>

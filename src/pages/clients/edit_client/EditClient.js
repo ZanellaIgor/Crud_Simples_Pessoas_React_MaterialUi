@@ -3,13 +3,14 @@ import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import NewClient from '../new_client/NewClient';
 
+import './EditClient.css'
 
 const EditClient = () => {
   const { id } = useParams();
-  const url = "http://localhost:3000/clientes/" + id
+  const url = "http://localhost:3001/clientes/" + id
   console.log(id)
+
 
   useEffect(() => {
     axios.get(url)
@@ -98,6 +99,7 @@ const EditClient = () => {
       .then(response => {
         console.log(response.data)
         this.setState(cliente)
+        alert("Cliente Editado")
 
       })
       .catch(error => console.log(error))
@@ -135,7 +137,7 @@ const EditClient = () => {
     }
   }
   return (
-    <div>
+    <div className='container-new-client' >
       <h1>Edite</h1>
       <form className="container-form" onSubmit={handleSubmit(handleButtonForm)}>
         <div className='container-dados-clientes'>
@@ -164,11 +166,11 @@ const EditClient = () => {
 
           <span>
             <label htmlFor='telefone'>Telefone: </label>
-            <input id="telCliente" name="telefone" type="text" value={telefone} onChange={(event) => setTelefone(event.target.value)} />
+            <input id="telCliente" name="telefone" type="tel" value={telefone} onChange={(event) => setTelefone(event.target.value)} />
           </span>
           <span>
             <label htmlFor='celular'>Celular: </label>
-            <input id="celularCliente" name="celular" type="text" value={celular} onChange={(event) => setCelular(event.target.value)} />
+            <input id="celularCliente" name="celular" type="tel" value={celular} onChange={(event) => setCelular(event.target.value)} />
           </span>
 
           <span>
