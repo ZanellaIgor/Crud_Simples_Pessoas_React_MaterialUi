@@ -2,8 +2,8 @@
   "clientes": [
     {
       "id": 1,
-      "nome": "Roberto",
-      "cpfCnpj": "256879",
+      "nome": "Robertoa",
+      "cpfCnpj": "12345678911",
       "ie": 156,
       "cep": 9534055,
       "celular": 568,
@@ -74,6 +74,66 @@
       "cidade": "Caxias do Sul",
       "uf": "RS",
       "id": 5
+    },
+    {
+      "nome": "Ig",
+      "cpfCnpj": "12345678912",
+      "ie": "ISENTO",
+      "cep": "95482030",
+      "celular": "123456",
+      "telefone": "123456",
+      "rua": "123",
+      "complemento": "123",
+      "numero": "123",
+      "bairro": "123",
+      "cidade": "12356",
+      "uf": "123",
+      "id": 6
+    },
+    {
+      "nome": "RSS",
+      "cpfCnpj": "12345678912",
+      "ie": "ISENTO",
+      "cep": "95482030",
+      "celular": "123456",
+      "telefone": "123456",
+      "rua": "123",
+      "complemento": "123",
+      "numero": "123",
+      "bairro": "123",
+      "cidade": "12356",
+      "uf": "123",
+      "id": 7
+    },
+    {
+      "nome": "Reiss",
+      "cpfCnpj": "12345678912",
+      "ie": "ISENTO",
+      "cep": "95010004",
+      "celular": "numero",
+      "telefone": "12345678910",
+      "rua": "Avenida Júlio de Castilhos",
+      "complemento": "123",
+      "numero": "S/N",
+      "bairro": "Centro",
+      "cidade": "Caxias do Sul",
+      "uf": "RS",
+      "id": 8
+    },
+    {
+      "nome": "Teste 56 ",
+      "cpfCnpj": "03536748029",
+      "ie": "ISENTO",
+      "cep": "95010005",
+      "celular": "ASD",
+      "telefone": "565656",
+      "rua": "Avenida Júlio de Castilhos",
+      "complemento": "58",
+      "numero": "123",
+      "bairro": "Centro",
+      "cidade": "Caxias do Sul",
+      "uf": "RS",
+      "id": 9
     }
   ],
   "comments": [

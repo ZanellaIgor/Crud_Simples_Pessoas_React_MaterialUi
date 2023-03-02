@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -8,9 +8,26 @@ import './EditClient.css'
 
 const EditClient = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const url = "http://localhost:3001/clientes/" + id
-  console.log(id)
 
+  const baseUrl = `https://viacep.com.br/ws/`
+  const [cep, setCep] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [cidade, setCidade] = useState('');
+  const [uf, setUf] = useState('');
+  const [rua, setRua] = useState('');
+  const [nome, setNome] = useState('');
+  const [celular, setCelular] = useState('');
+  const [telefone, setTelefone] = useState('')
+  const [cpfCnpj, setCpfCnpj] = useState('');
+  const [ie, setIe] = useState('');
+  const [complemento, setComplemento] = useState('');
+  const [numero, setNumero] = useState('');
+  const {
+    register,
+    handleSubmit, formState: { errors }
+  } = useForm();
 
   useEffect(() => {
     axios.get(url)
@@ -32,43 +49,22 @@ const EditClient = () => {
       })
       .catch((error) => {
         console.log(error);
-      })
-  }, [])
-
-
-  const baseUrl = `https://viacep.com.br/ws/`
-  const [cep, setCep] = useState('');
-  const [bairro, setBairro] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [uf, setUf] = useState('');
-  const [rua, setRua] = useState('');
-  const [nome, setNome] = useState('');
-  const [celular, setCelular] = useState('');
-  const [telefone, setTelefone] = useState('')
-  const [cpfCnpj, setCpfCnpj] = useState('');
-  const [ie, setIe] = useState('');
-  const [complemento, setComplemento] = useState('');
-  const [numero, setNumero] = useState('');
-  const {
-    register,
-    handleSubmit, formState: { errors }
-  } = useForm();
+      },[])
+  })
 
   const [endereco, setEndereco] = useState({});
+  const [cliente, setCliente] = useState({});
 
-  const validateCnpjcpf = (value) => { 
+  const validateCnpjCpf = (value) => {
     console.log(value.length)
     if (isNaN(Number(value))) {
       return "Insira um número válido";
-    } else if(value.length == 11 || value.length == 14){
+    } else if (value.length == 11 || value.length == 14) {
       return true
     }
-    else if(value.length > 14){
-      return "Mais caracteres que o necessário"
-     }
-     else if(value.length < 11){
-      return "Poucos Caracteres informados"
-     } 
+    else {
+      return "Verifique o campo!"
+    }
   }
   const validateInEst = (ie) => {
     if (ie !== "ISENTO" && isNaN(Number(ie))) {
@@ -77,7 +73,7 @@ const EditClient = () => {
     return true;
   }
 
-  {/*Adicionando cliente*/ }
+  {/*Alterando o cliente*/ }
   function handleButtonForm(e) {
     const cliente = {
       nome,
@@ -98,8 +94,9 @@ const EditClient = () => {
     axios.patch(url, cliente)
       .then(response => {
         console.log(response.data)
-        this.setState(cliente)
+        setCliente(cliente)
         alert("Cliente Editado")
+        navigate('/pages/clients/list_client')
 
       })
       .catch(error => console.log(error))
@@ -149,7 +146,7 @@ const EditClient = () => {
           <span>
             <label htmlFor='cnpjcpf'>CPF/CNPJ: </label>
             <input id="cnpjcpfClient" name="cnpjcpf" type="text"
-              {...register("cnpjcpf", { validate: validateCnpjcpf })} required
+              {...register("cnpjcpf", { validate: validateCnpjCpf })} required
               value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}
             />
             {errors.cnpjcpf && <p>{errors.cnpjcpf.message}</p>}

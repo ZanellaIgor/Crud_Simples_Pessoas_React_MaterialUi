@@ -28,19 +28,17 @@ const NewClient = () => {
   } = useForm();
 
   const [endereco, setEndereco] = useState({});
+  const [cliente, setCliente] = useState({});
 
-  const validateCnpjcpf = (value) => {
+  const validateCnpjCpf = (value) => {
     console.log(value.length)
     if (isNaN(Number(value))) {
       return "Insira um número válido";
     } else if (value.length == 11 || value.length == 14) {
       return true
     }
-    else if (value.length > 14) {
-      return "Mais caracteres que o necessário"
-    }
-    else if (value.length < 11) {
-      return "Poucos Caracteres informados"
+    else {
+      return "Verifique o campo!"
     }
   }
 
@@ -55,15 +53,15 @@ const NewClient = () => {
     setNome('');
     setCpfCnpj('');
     setIe('');
-    setCep('')
-    setCelular('')
-    setTelefone('')
-    setRua('')
-    setComplemento('')
-    setNumero('')
-    setBairro('')
-    setCidade('')
-    setUf('')
+    setCep('');
+    setCelular('');
+    setTelefone('');
+    setRua('');
+    setComplemento('');
+    setNumero('');
+    setBairro('');
+    setCidade('');
+    setUf('');
   }
 
   {/*Adicionando cliente*/ }
@@ -87,8 +85,8 @@ const NewClient = () => {
     axios.post(url, cliente)
       .then(response => {
         console.log(response.data)
-        this.setState(cliente)
-        limpaDados()
+        setCliente(cliente)
+        limpaDados();
 
       })
       .catch(error => console.log(error))
@@ -139,7 +137,7 @@ const NewClient = () => {
           <span>
             <label htmlFor='cnpjcpf'>CPF/CNPJ: </label>
             <input id="cnpjCpfCliente" name="cnpjcpf" type="text"
-              {...register("cnpjcpf", { validate: validateCnpjcpf })} required
+              {...register("cnpjcpf", { validate: validateCnpjCpf })} required
               value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}
             />
             {errors.cnpjcpf && <p>{errors.cnpjcpf.message}</p>}

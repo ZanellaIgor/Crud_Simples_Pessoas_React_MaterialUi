@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
         
-        <BsFillPersonFill/>
+        <h3 className='container-header-h'>Controle de Clientes</h3>
 
     </header>
   )

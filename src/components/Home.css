@@ -4,14 +4,13 @@ section {
 }
 
 .container-home-h {
-    margin: 10px;
+    padding: 5px;
     text-align: center;
 }
 
 .container-link-home {
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
 
 .container-ul {
