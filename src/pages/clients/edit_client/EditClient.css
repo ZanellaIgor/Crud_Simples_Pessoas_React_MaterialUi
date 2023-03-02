@@ -68,8 +68,8 @@ button:hover {
     transition: 1s;
     background-color: rgb(8, 11, 216);
 }
-P{
-    color: red;
+p{
+    color: rgb(68, 0, 255);
     margin: 4px;
     padding: 4px;
 }

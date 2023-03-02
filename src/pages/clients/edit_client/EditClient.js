@@ -13,6 +13,7 @@ const EditClient = () => {
 
   const baseUrl = `https://viacep.com.br/ws/`
   const [cep, setCep] = useState('');
+  const [cpfCnpj, setCpfCnpj] = useState('');
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
   const [uf, setUf] = useState('');
@@ -20,7 +21,6 @@ const EditClient = () => {
   const [nome, setNome] = useState('');
   const [celular, setCelular] = useState('');
   const [telefone, setTelefone] = useState('')
-  const [cpfCnpj, setCpfCnpj] = useState('');
   const [ie, setIe] = useState('');
   const [complemento, setComplemento] = useState('');
   const [numero, setNumero] = useState('');
@@ -33,7 +33,6 @@ const EditClient = () => {
     axios.get(url)
       .then((response) => {
         const api = response.data;
-        console.log(response.data);
         setNome(api.nome);
         setCpfCnpj(api.cpfCnpj);
         setIe(api.ie);
@@ -49,32 +48,14 @@ const EditClient = () => {
       })
       .catch((error) => {
         console.log(error);
-      },[])
-  })
+      })
+  },[url])
 
   const [endereco, setEndereco] = useState({});
   const [cliente, setCliente] = useState({});
 
-  const validateCnpjCpf = (value) => {
-    console.log(value.length)
-    if (isNaN(Number(value))) {
-      return "Insira um número válido";
-    } else if (value.length == 11 || value.length == 14) {
-      return true
-    }
-    else {
-      return "Verifique o campo!"
-    }
-  }
-  const validateInEst = (ie) => {
-    if (ie !== "ISENTO" && isNaN(Number(ie))) {
-      return "Insira um número válido ou ISENTO";
-    }
-    return true;
-  }
-
   {/*Alterando o cliente*/ }
-  function handleButtonForm(e) {
+  function handleButtonForm(event) {
     const cliente = {
       nome,
       cpfCnpj,
@@ -103,10 +84,29 @@ const EditClient = () => {
     console.log(cliente)
   }
 
+  const validateCpfCnpj = (value) => {
+    console.log(value)
+    if (isNaN(Number(value))) {
+      return "Insira um número válido";
+    } else if (value.length === 11 || value.length === 14) {
+      return true
+    }
+    else {
+      return "Verifique o campo!"
+    }
+  }
+  
+  const validateInEst = (ie) => {
+    if (ie !== "ISENTO" && isNaN(Number(ie))) {
+      return "Insira um número válido ou ISENTO";
+    }
+    return true;
+  }
+
+
   {/*Informando o CEP pela pesquisa*/ }
   const addEndereco = (() => {
     axios.get(`${baseUrl}${(cep.replace(/\D/g, ""))}/json/`)
-
       .then((response) => {
         const api = response.data
         setEndereco(api);
@@ -124,7 +124,6 @@ const EditClient = () => {
     const cepNumeros = cep.replace(/\D/g, "");
 
     setCep(cepNumeros);
-
 
     if (cepNumeros.length === 8) {
       addEndereco();
@@ -144,12 +143,12 @@ const EditClient = () => {
           </span>
 
           <span>
-            <label htmlFor='cnpjcpf'>CPF/CNPJ: </label>
-            <input id="cnpjcpfClient" name="cnpjcpf" type="text"
-              {...register("cnpjcpf", { validate: validateCnpjCpf })} required
+            <label htmlFor='cpfCnpj'>CPF/CNPJ: </label>
+            <input id="cnpjcpfClient" name="cpfCnpj" type="text"   
+              {...register("cpfCnpj", { validate: validateCpfCnpj })} required
               value={cpfCnpj} onChange={(event) => setCpfCnpj(event.target.value)}
-            />
-            {errors.cnpjcpf && <p>{errors.cnpjcpf.message}</p>}
+               />
+            {errors.cpfCnpj && <p>{errors.cpfCnpj.message}</p>}
           </span>
 
           <span>
@@ -206,7 +205,7 @@ const EditClient = () => {
           </span>
         </div>
 
-        <button id='botao-envia-cliente' type="submit">Enviar</button>
+        <button id='botao-envia-cliente' type="submit">Alterar</button>
 
       </form>
     </div>
