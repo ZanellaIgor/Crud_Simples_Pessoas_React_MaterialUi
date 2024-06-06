@@ -7,7 +7,9 @@ const Layout = ({ children }) => {
     <div>
       <Header />
       <DrawerNavBar />
-      <main style={{ marginLeft: 250, marginTop: '6rem' }}>{children}</main>
+      <main style={{ marginLeft: 250, marginTop: '6rem', padding: '1rem' }}>
+        {children}
+      </main>
     </div>
   );
 };
