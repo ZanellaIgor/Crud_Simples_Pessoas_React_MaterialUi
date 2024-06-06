@@ -3,7 +3,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <AppBar>
+    <AppBar sx={{ bgcolor: '#1976d2', height: '6rem' }}>
       <Toolbar
         sx={{
           width: '100%',

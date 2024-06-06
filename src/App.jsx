@@ -1,28 +1,24 @@
 import { useState } from 'react';
-import './App.css';
-import DrawerNavBar from './components/Drawer.NavBar';
-import Header from './components/Header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import { Home } from './pages/Home';
+import ListClient from './pages/clients/list_client/ListClient';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <DrawerNavBar />
-      <Header />
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" index element={<Home />} />
+
+          <Route path="/client/" element={<Home />} />
+          <Route path="/client/form" element={<ListClient />} />
+          {/*  <Route path="/client/form/:id/" element={<Home />} /> */}
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
