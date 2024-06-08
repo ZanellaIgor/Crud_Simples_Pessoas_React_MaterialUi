@@ -13,12 +13,9 @@ export function SnackBarProvider({ children }) {
   });
   const { open, type, title, text } = state;
 
-  const controllerSnack =
-    ({ title, type, text }) =>
-    () => {
-      setState({ open: true, title, type, text });
-      console.log(title);
-    };
+  const controllerSnack = ({ title, type, text }) => {
+    setState({ open: true, title, type, text });
+  };
 
   const handleClose = () => {
     setState({ ...state, open: false });

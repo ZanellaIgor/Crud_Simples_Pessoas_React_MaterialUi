@@ -25,17 +25,11 @@ export const FormClient = (register) => {
     const cep = event.target.value.replace('-', '').replaceAll('_', '');
     console.log(cep, cep.length);
     if (cep.length === 8) {
-      getAndress(cep);
+      getAddress(cep);
     }
-    controllerSnack({
-      open: true,
-      title: 'Ok!',
-      type: 'success',
-      text: 'Endereço adicionado com sucesso',
-    });
   };
 
-  const getAndress = async (cep) => {
+  const getAddress = async (cep) => {
     const url = `https://viacep.com.br/ws/${cep}/json/`;
     try {
       const response = await axios.get(`${url}`);
@@ -45,7 +39,7 @@ export const FormClient = (register) => {
         title: 'Ok!',
         type: 'success',
         text: 'Endereço adicionado com sucesso',
-      })();
+      });
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -53,7 +47,7 @@ export const FormClient = (register) => {
         title: 'Erro',
         type: 'error',
         text: 'Ocorreu um erro inesperado.',
-      })();
+      });
     }
   };
 
