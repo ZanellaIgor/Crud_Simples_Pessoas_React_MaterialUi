@@ -1,8 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Card, Grid, Stack } from '@mui/material';
+import { Button, Card, Grid, Stack, Typography } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { useSnackbar } from '../../Hooks/useSnackBar';
 import { InputField } from '../InputField/InputField';
 import { InputSelect } from '../InputSelect/InputSelect';
@@ -11,6 +12,7 @@ import { SchemaFormClient } from './Form.Client.Schema';
 
 export const FormClient = (register) => {
   const { controllerSnack } = useSnackbar();
+  const { id } = useParams();
   const {
     handleSubmit,
     register: reg,
@@ -19,12 +21,57 @@ export const FormClient = (register) => {
     formState: { errors },
     setValue,
   } = useForm({
-    defaultValues: { ...register },
+    defaultValues: {
+      ...register,
+      tipoPessoa: register.tipoPessoa ?? 'pj',
+    },
     resolver: yupResolver(SchemaFormClient),
   });
+  console.log(id);
   const [cep, setCep] = useState('');
   const submitForm = (values) => {
-    console.log(values);
+    const url = `http://localhost:3000/pessoa/`;
+
+    if (!id) {
+      axios
+        .post(url, values)
+        .then((res) => {
+          controllerSnack({
+            open: true,
+            title: 'Ok!',
+            type: 'success',
+            text: 'Pessoa Adicionada com sucesso',
+          });
+        })
+        .catch((error) =>
+          controllerSnack({
+            open: true,
+            title: 'Erro!',
+            type: 'error',
+            text: 'Não foi possivélo adicionar a pessoa. Tente novamente.',
+          })
+        );
+    }
+    if (id) {
+      axios
+        .put(`${url}${id}`, values)
+        .then((res) => {
+          controllerSnack({
+            open: true,
+            title: 'Ok!',
+            type: 'success',
+            text: 'Pessoa Atualizada com sucesso',
+          });
+        })
+        .catch((error) =>
+          controllerSnack({
+            open: true,
+            title: 'Erro!',
+            type: 'error',
+            text: 'Não foi possivélo atualizar a pessoa. Tente novamente.',
+          })
+        );
+    }
   };
 
   useEffect(() => {
@@ -79,8 +126,12 @@ export const FormClient = (register) => {
     <form noValidate onSubmit={handleSubmit(submitForm)}>
       <Card sx={{ mb: 2, borderRadius: 2 }}>
         <Grid container rowSpacing={2} columnSpacing={2} padding={2}>
-          <Grid item>
+          <Grid item md={12}>
+            <Typography variant="h6">Informações Pessoais</Typography>
+          </Grid>
+          <Grid item md={4}>
             <InputField
+              fullWidth
               name="name"
               control={control}
               label="Nome"
@@ -89,23 +140,12 @@ export const FormClient = (register) => {
               sx={inputSX}
             />
           </Grid>
-          <Grid item>
-            {/*         <InputField
-              name="tipoPessoa"
-              control={control}
-              defaultValue="pf"
-              label="Tipo Pessoa"
-              id="outlined-select"
-              select
-              sx={inputSX}
-            >
-              <MenuItem value="pf">Física</MenuItem>
-              <MenuItem value={'pj'}>Jurídica</MenuItem>
-            </InputField> */}
+          <Grid item md={2}>
             <InputSelect
+              fullWidth
               name="tipoPessoa"
               control={control}
-              defaultValue="pf"
+              defaultValue="pj"
               label="Tipo Pessoa"
               options={[
                 { value: 'pf', label: 'Física' },
@@ -113,8 +153,9 @@ export const FormClient = (register) => {
               ]}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={3}>
             <InputField
+              fullWidth
               name="inscricaoEstadual"
               control={control}
               label="Inscrição Estadual"
@@ -123,8 +164,9 @@ export const FormClient = (register) => {
               sx={inputSX}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={3}>
             <InputMask
+              fullWidth
               typeInput={watch('tipoPessoa') === 'pf' ? 'cpf' : 'cnpj'}
               control={control}
               name="cpfCnpj"
@@ -135,6 +177,7 @@ export const FormClient = (register) => {
 
           <Grid item>
             <InputMask
+              fullWidth
               typeInput="celPhone"
               control={control}
               name="celular"
@@ -144,6 +187,7 @@ export const FormClient = (register) => {
           </Grid>
           <Grid item>
             <InputMask
+              fullWidth
               typeInput="phone"
               control={control}
               name="telefone"
@@ -153,6 +197,7 @@ export const FormClient = (register) => {
           </Grid>
           <Grid item>
             <InputField
+              fullWidth
               name="email"
               control={control}
               label="E-mail"
@@ -162,10 +207,13 @@ export const FormClient = (register) => {
         </Grid>
       </Card>
       <Card sx={{ mb: 2, borderRadius: 2 }}>
-        {/* Endereços */}
         <Grid container rowSpacing={2} columnSpacing={2} padding={2}>
+          <Grid item md={12}>
+            <Typography variant="h6">Endereço</Typography>
+          </Grid>
           <Grid item>
             <InputMask
+              fullWidth
               typeInput="cep"
               control={control}
               name="cep"
@@ -178,6 +226,7 @@ export const FormClient = (register) => {
           </Grid>
           <Grid item>
             <InputField
+              fullWidth
               control={control}
               name="cidade"
               label="Cidade"
@@ -186,7 +235,7 @@ export const FormClient = (register) => {
           </Grid>
 
           <Grid item>
-            <InputField name="rua" control={control} label="Rua" />
+            <InputField fullWidth name="rua" control={control} label="Rua" />
           </Grid>
           <Grid item>
             <InputField
@@ -202,10 +251,12 @@ export const FormClient = (register) => {
               control={control}
               label="bairro"
               sx={inputSX}
+              fullWidth
             />
           </Grid>
           <Grid item>
             <InputField
+              fullWidth
               name="uf"
               control={control}
               label="UF"
