@@ -1,8 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Card, Grid, MenuItem, Stack, TextField } from '@mui/material';
+import { Button, Card, Grid, Stack } from '@mui/material';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSnackbar } from '../../Hooks/useSnackBar';
+import { InputField } from '../InputField/InputField';
+import { InputSelect } from '../InputSelect/InputSelect';
 import { InputMask } from '../InputsMask/Input.Mask';
 import { SchemaFormClient } from './Form.Client.Schema';
 
@@ -14,41 +17,58 @@ export const FormClient = (register) => {
     watch,
     control,
     formState: { errors },
+    setValue,
   } = useForm({
     defaultValues: { ...register },
     resolver: yupResolver(SchemaFormClient),
   });
+  const [cep, setCep] = useState('');
   const submitForm = (values) => {
     console.log(values);
   };
-  const handleChangeCep = (event) => {
-    const cep = event.target.value.replace('-', '').replaceAll('_', '');
-    console.log(cep, cep.length);
-    if (cep.length === 8) {
-      getAddress(cep);
-    }
-  };
 
-  const getAddress = async (cep) => {
-    const url = `https://viacep.com.br/ws/${cep}/json/`;
-    try {
-      const response = await axios.get(`${url}`);
-      console.log(response);
-      controllerSnack({
-        open: true,
-        title: 'Ok!',
-        type: 'success',
-        text: 'Endereço adicionado com sucesso',
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-      controllerSnack({
-        title: 'Erro',
-        type: 'error',
-        text: 'Ocorreu um erro inesperado.',
-      });
-    }
+  useEffect(() => {
+    const getAddress = async () => {
+      if (!cep || cep.length !== 8) return; // Verifica se o CEP é válido
+      try {
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${cep}/json/`
+        );
+        if (response.data.erro)
+          return controllerSnack({
+            title: 'Erro',
+            type: 'error',
+            text: 'Não foi encontrado este Cep.',
+          });
+        controllerSnack({
+          open: true,
+          title: 'Ok!',
+          type: 'success',
+          text: 'Endereço buscado com sucesso',
+        });
+        //setAddress(response.data);
+        console.log(response.data);
+
+        setValue('uf', response?.data?.uf);
+        setValue('complemento', response?.data?.complemento);
+        setValue('bairro', response?.data?.bairro);
+        setValue('cidade', response?.data?.localidade);
+        // Continue atualizando outros campos conforme necessário
+      } catch (error) {
+        controllerSnack({
+          title: 'Erro',
+          type: 'error',
+          text: 'Ocorreu um erro inesperado.',
+        });
+      }
+    };
+
+    getAddress();
+  }, [cep, setValue]); // Dependência do CEP e setValue para atualizar os campos do formulário
+
+  const handleChangeCep = (event) => {
+    const newCep = event.target.value.replace('-', '').replaceAll('_', '');
+    setCep(newCep);
   };
 
   const inputSX = {
@@ -60,8 +80,9 @@ export const FormClient = (register) => {
       <Card sx={{ mb: 2, borderRadius: 2 }}>
         <Grid container rowSpacing={2} columnSpacing={2} padding={2}>
           <Grid item>
-            <TextField
-              {...reg('name')}
+            <InputField
+              name="name"
+              control={control}
               label="Nome"
               error={!!errors?.name}
               helperText={errors?.name?.message}
@@ -69,8 +90,9 @@ export const FormClient = (register) => {
             />
           </Grid>
           <Grid item>
-            <TextField
-              {...reg('tipoPessoa')}
+            {/*         <InputField
+              name="tipoPessoa"
+              control={control}
               defaultValue="pf"
               label="Tipo Pessoa"
               id="outlined-select"
@@ -79,11 +101,22 @@ export const FormClient = (register) => {
             >
               <MenuItem value="pf">Física</MenuItem>
               <MenuItem value={'pj'}>Jurídica</MenuItem>
-            </TextField>
+            </InputField> */}
+            <InputSelect
+              name="tipoPessoa"
+              control={control}
+              defaultValue="pf"
+              label="Tipo Pessoa"
+              options={[
+                { value: 'pf', label: 'Física' },
+                { value: 'pj', label: 'Jurídica' },
+              ]}
+            />
           </Grid>
           <Grid item>
-            <TextField
-              {...reg('inscricaoEstadual')}
+            <InputField
+              name="inscricaoEstadual"
+              control={control}
               label="Inscrição Estadual"
               error={!!errors?.inscricaoEstadual}
               helperText={errors?.inscricaoEstadual?.message}
@@ -119,28 +152,18 @@ export const FormClient = (register) => {
             />
           </Grid>
           <Grid item>
-            <TextField {...reg('email')} label="E-mail" sx={inputSX} />
+            <InputField
+              name="email"
+              control={control}
+              label="E-mail"
+              sx={inputSX}
+            />
           </Grid>
         </Grid>
       </Card>
       <Card sx={{ mb: 2, borderRadius: 2 }}>
         {/* Endereços */}
         <Grid container rowSpacing={2} columnSpacing={2} padding={2}>
-          <Grid item>
-            <TextField {...reg('ud')} label="Estado" sx={inputSX} />
-          </Grid>
-          <Grid item>
-            <TextField {...reg('cidade')} label="Cidade" sx={inputSX} />
-          </Grid>
-          <Grid item>
-            <TextField {...reg('bairro')} label="bairro" sx={inputSX} />
-          </Grid>
-          <Grid item>
-            <TextField {...reg('rua')} label="Rua" />
-          </Grid>
-          <Grid item>
-            <TextField {...reg('numero')} label="Número" sx={inputSX} />
-          </Grid>
           <Grid item>
             <InputMask
               typeInput="cep"
@@ -151,6 +174,44 @@ export const FormClient = (register) => {
               onKeyUp={(e) => {
                 handleChangeCep(e);
               }}
+            />
+          </Grid>
+          <Grid item>
+            <InputField
+              control={control}
+              name="cidade"
+              label="Cidade"
+              sx={inputSX}
+            />
+          </Grid>
+
+          <Grid item>
+            <InputField name="rua" control={control} label="Rua" />
+          </Grid>
+          <Grid item>
+            <InputField
+              name="numero"
+              control={control}
+              label="Número"
+              sx={inputSX}
+            />
+          </Grid>
+          <Grid item>
+            <InputField
+              name="bairro"
+              control={control}
+              label="bairro"
+              sx={inputSX}
+            />
+          </Grid>
+          <Grid item>
+            <InputField
+              name="uf"
+              control={control}
+              label="UF"
+              sx={inputSX}
+              inputRef={reg('uf')}
+              InputLabelProps={{ shrink: true }}
             />
           </Grid>
         </Grid>

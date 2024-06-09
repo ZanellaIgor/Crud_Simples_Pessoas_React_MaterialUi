@@ -28,6 +28,7 @@ const InputBase = ({ name, label, typeInput, control, ...rest }, ref) => {
     <Controller
       name={name}
       control={control}
+      defaultValue=""
       render={({ field, fieldState: { error } }) => {
         return (
           <PatternFormat
