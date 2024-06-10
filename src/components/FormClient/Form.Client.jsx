@@ -120,11 +120,11 @@ export const FormClient = ({ register, id }) => {
             <Grid item md={4}>
               <InputField
                 fullWidth
-                name="name"
+                name="nome"
                 control={control}
                 label="Nome"
-                error={!!errors?.name}
-                helperText={errors?.name?.message}
+                error={!!errors?.nome}
+                helperText={errors?.nome?.message}
                 sx={inputSX}
               />
             </Grid>

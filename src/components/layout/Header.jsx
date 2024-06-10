@@ -1,21 +1,22 @@
-import { AppBar, Toolbar } from '@mui/material';
+import { AppBar, Box, Toolbar } from '@mui/material';
 import React from 'react';
 
-const Header = () => {
+const Header = ({ children }) => {
   return (
-    <AppBar sx={{ bgcolor: '#1976d2', height: '6rem' }}>
-      <Toolbar
-        sx={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-        }}
-      >
-        sssadasdasasd
-      </Toolbar>
-    </AppBar>
+    <Box>
+      <AppBar sx={{ bgcolor: '#1976d2', height: '6rem' }}>
+        <Toolbar
+          sx={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+          }}
+        ></Toolbar>
+      </AppBar>
+      {children}
+    </Box>
   );
 };
 

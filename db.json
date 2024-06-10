@@ -2,7 +2,7 @@
   "pessoa": [
     {
       "tipoPessoa": "pj",
-      "name": "Jõao da silva",
+      "nome": "Jõao da silva",
       "inscricaoEstadual": "",
       "cpfCnpj": "45.465.454/6546-54",
       "celular": "",
@@ -17,7 +17,7 @@
     },
     {
       "tipoPessoa": "pj",
-      "name": "Jõao da 8",
+      "nome": "Jõao da 8",
       "inscricaoEstadual": "",
       "cpfCnpj": "45.465.454/6546-54",
       "celular": "",

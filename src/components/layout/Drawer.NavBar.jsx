@@ -10,12 +10,9 @@ import ListItemText from '@mui/material/ListItemText';
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
-export default function DrawerNavBar() {
+export const DrawerNavBar = ({ Children }) => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
 
   const menus = [
     { id: 1, menu: 'Home', link: '/', icon: 'Home' },
@@ -50,8 +47,6 @@ export default function DrawerNavBar() {
     <Stack
       sx={{ width: 250, bgcolor: '#115DF5', height: '100%' }}
       role="presentation"
-      variant="permanent"
-      onClick={toggleDrawer(false)}
     >
       <List sx={{ mt: 25 }}>
         {menus.map((menu, index) => {
@@ -97,9 +92,7 @@ export default function DrawerNavBar() {
 
   return (
     <>
-      <Drawer variant="permanent" open={open} onClose={toggleDrawer(false)}>
-        {DrawerList}
-      </Drawer>
+      <Drawer variant="permanent">{DrawerList}</Drawer>
     </>
   );
-}
+};
