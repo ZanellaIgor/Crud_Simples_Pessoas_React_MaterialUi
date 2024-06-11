@@ -9,6 +9,7 @@ export const useApiRequest = (
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [response, setResponse] = useState(null);
+  const [totals, setTotals] = useState(0);
 
   const makeRequest = async (
     url = initialUrl,
@@ -21,7 +22,8 @@ export const useApiRequest = (
 
     try {
       const res = await axios({ url, method, data });
-      setResponse(res.data);
+      setResponse(res?.data);
+      setTotals(parseInt(res?.headers['x-total-count'], 10));
     } catch (err) {
       setError(err);
     } finally {
@@ -29,5 +31,5 @@ export const useApiRequest = (
     }
   };
 
-  return { loading, error, response, makeRequest };
+  return { loading, error, response, makeRequest, totals };
 };
