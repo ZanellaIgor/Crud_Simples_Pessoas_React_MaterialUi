@@ -2,9 +2,9 @@
 
 Projeto desenvolvido para fins de estudo sem utilizar o TypeScript, foi um dos primeiros "projetos" feito para aprender sobre o framework ReactJs, inicialmente foi feito com o Create-React-App, como não é mais recomendado resolvi mudar para o Vite.
 
-O sistema, cria, edita e lista pessoas(paginada) pessoas, fazendo validação de campos obigatórios como nome, e cep. Também faz consulta do Cep da pessoa, na api do via cep.
+O sistema, cria, edita e lista pessoas (paginadas), fazendo validação de campos obigatórios como nome, e cep. Também faz consulta do Cep da pessoa, na api do via cep.
 
-A gravação e consulta e gerenciado pelo JSON-Server, que simula uma API real, gravando no arquivo db.json
+A gravação, consulta, é gerenciado pelo JSON-Server, que simula uma API real, gravando no arquivo db.json
 
 ### Tecnologias/Libs Utilizadas
 
@@ -38,7 +38,11 @@ JSON SERVER - [https://www.npmjs.com/package/json-server]
 JSON SERVER - [https://github.com/typicode/json-server/tree/v0]
 Via Cep - [https://viacep.com.br/]
 
-## Projeto Finalizado/Descontinuado pelos motivos:
+## Projeto Finalizado
 
--Objetivo alcançado que era migrar de CRA para Vite.
--Sem TypeScript não tem o porque fazer um projeto.
+-Este projeto foi finalizado por ter atingido o seu objetivo, que era aprender e praticar o desenvolvimento com React e Vite.
+
+## ⏭️ Próximos passos
+
+-Migrar para TypeScript.
+-Melhorar design das paginas.
