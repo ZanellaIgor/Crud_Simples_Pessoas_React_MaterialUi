@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-import { FormClient } from './components/FormClient/Form.Client';
+import { FormPessoa } from './components/FormPessoa/Form.Pessoa';
 import { Layout } from './components/layout/Layout';
 import { Home } from './pages/Home';
 import NotFoundPage from './pages/notFound/NotFound';
@@ -13,11 +12,10 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" index element={<Home />} />
-          <Route path="/client/" element={<ListPessoa />} />
-          <Route path="/client/form" element={<FormClient />} />
-          <Route path="/client/form/:id" element={<EditPessoa />} />
+          <Route path="/pessoa/" element={<ListPessoa />} />
+          <Route path="/pessoa/form" element={<FormPessoa />} />
+          <Route path="/pessoa/form/:id" element={<EditPessoa />} />
           <Route path="*" element={<NotFoundPage />} />
-          {/*  <Route path="/client/form/:id/" element={<Home />} /> */}
         </Routes>
       </Layout>
     </BrowserRouter>

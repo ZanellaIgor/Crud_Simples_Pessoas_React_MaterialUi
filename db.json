@@ -224,6 +224,37 @@
       "numero": "",
       "bairro": "São Lucas",
       "id": 16
+    },
+    {
+      "tipoPessoa": "pj",
+      "nome": "Fabricio DE carlo",
+      "inscricaoEstadual": "",
+      "cpfCnpj": "12.345.678/9123-00",
+      "celular": "(54) 98888-1111",
+      "telefone": "(12) 0355-5555",
+      "email": "teste@teste.com.br",
+      "cep": "95555-555",
+      "cidade": "São Paulo",
+      "rua": "Pauleta",
+      "numero": "51",
+      "bairro": "",
+      "id": 17
+    },
+    {
+      "tipoPessoa": "pj",
+      "uf": "RS",
+      "nome": "Juridico",
+      "inscricaoEstadual": "123456",
+      "cpfCnpj": "12.345.678/9000-00",
+      "celular": "(54) 88888-8888",
+      "telefone": "(11) 1111-1111",
+      "email": "teste@teste.com.br",
+      "cep": "12345-678",
+      "cidade": "São leopoldo",
+      "rua": "",
+      "numero": "5454",
+      "bairro": "",
+      "id": 18
     }
   ],
   "comments": [

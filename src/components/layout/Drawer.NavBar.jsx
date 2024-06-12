@@ -18,14 +18,14 @@ export const DrawerNavBar = ({ children }) => {
     { id: 1, menu: 'Home', link: '/', icon: 'Home' },
     {
       id: 2,
-      menu: 'Lista de Clientes',
-      link: '/client/',
+      menu: 'Lista de Pessoas',
+      link: '/pessoa/',
       icon: 'Group',
     },
     {
       id: 3,
-      menu: 'Adicionar Cliente',
-      link: '/client/form',
+      menu: 'Adicionar Pessoa',
+      link: '/pessoa/form',
       icon: 'GroupAdd',
     },
   ];
@@ -53,11 +53,11 @@ export const DrawerNavBar = ({ children }) => {
       </Stack>
       <Divider />
       <List>
-        {menus.map((menu) => {
+        {menus.map((menu, index) => {
           const isActive = location.pathname === menu.link;
           const IconComponent = getIconByName(menu.icon);
           return (
-            <ListItem key={menu.id} disablePadding>
+            <ListItem key={`${menu.id}--${index}`} disablePadding>
               <ListItemButton
                 onClick={() => navigate(`${menu.link}`)}
                 sx={{

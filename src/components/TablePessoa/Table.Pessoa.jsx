@@ -21,17 +21,14 @@ export const TablePessoa = () => {
   const [pagesTotals, setPagesTotals] = useState(1);
   const [page, setPage] = useState(1);
   const handleClick = (id) => {
-    navigate(`/client/form/${id}`);
+    navigate(`/pessoa/form/${id}`);
   };
-  console.log(totals, ' totals');
 
   const handleChange = (event, value) => {
     console.log(event.target, value);
     setPage(value);
   };
   const [register, setRegister] = useState([]);
-  console.log(response);
-
   const getPessoa = async () => {
     const method = 'GET';
     const endpoint = `http://localhost:3000/pessoa?_page=${page}`;
@@ -51,28 +48,39 @@ export const TablePessoa = () => {
   return (
     !loading && (
       <>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{ bgcolor: '#E4E4EE' }}>
           <Table stickyHeader>
             <TableHead>
               <TableRow>
-                <TableCell>Nome:</TableCell>
-                <TableCell>Contato</TableCell>
-                <TableCell>Cidade:</TableCell>
-                <TableCell>Bairro:</TableCell>
-                <TableCell></TableCell>
+                <TableCell sx={{ bgcolor: '#90AAEF' }}>Nome:</TableCell>
+                <TableCell sx={{ bgcolor: '#90AAEF' }}>Contato</TableCell>
+                <TableCell sx={{ bgcolor: '#90AAEF' }}>Cidade:</TableCell>
+                <TableCell sx={{ bgcolor: '#90AAEF' }}>Bairro:</TableCell>
+                <TableCell sx={{ bgcolor: '#90AAEF' }}></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {register?.map((reg, index) => {
                 return (
-                  <TableRow key={reg?.id + index}>
-                    <TableCell>{reg?.nome}</TableCell>
-                    <TableCell>
+                  <TableRow
+                    key={reg?.id + index}
+                    sx={{
+                      '&:hover': {
+                        bgcolor: '#9EBDF9',
+                      },
+                    }}
+                  >
+                    <TableCell sx={{ padding: '.8rem' }}>{reg?.nome}</TableCell>
+                    <TableCell sx={{ padding: '.8rem' }}>
                       {reg?.telefone ?? '' - reg?.celular ?? ''}
                     </TableCell>
-                    <TableCell>{reg?.cidade}</TableCell>
-                    <TableCell>{reg?.bairro}</TableCell>
-                    <TableCell>
+                    <TableCell sx={{ padding: '.8rem' }}>
+                      {reg?.cidade}
+                    </TableCell>
+                    <TableCell sx={{ padding: '.8rem' }}>
+                      {reg?.bairro}
+                    </TableCell>
+                    <TableCell sx={{ padding: '.8rem' }}>
                       <IconButton onClick={() => handleClick(reg?.id)}>
                         <Edit />
                       </IconButton>

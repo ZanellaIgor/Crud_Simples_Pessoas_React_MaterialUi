@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useApiRequest } from '../../Hooks/useApiRequest';
-import { FormClient } from '../../components/FormClient/Form.Client';
+import { FormPessoa } from '../../components/FormPessoa/Form.Pessoa';
 
 export const EditPessoa = () => {
   const { id } = useParams();
@@ -26,7 +26,7 @@ export const EditPessoa = () => {
   return (
     response && (
       <div>
-        <FormClient register={response} id={id} />
+        <FormPessoa register={response} id={id} />
       </div>
     )
   );

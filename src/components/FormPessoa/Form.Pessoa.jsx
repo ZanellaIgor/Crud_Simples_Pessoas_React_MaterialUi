@@ -3,17 +3,18 @@ import { Button, Card, Grid, Stack, Typography } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useApiRequest } from '../../Hooks/useApiRequest';
 import { useSnackbar } from '../../Hooks/useSnackBar';
 import { InputField } from '../InputField/InputField';
 import { InputSelect } from '../InputSelect/InputSelect';
 import { InputMask } from '../InputsMask/Input.Mask';
-import { SchemaFormClient } from './Form.Client.Schema';
+import { SchemaFormPessoa } from './Form.Pessoa.Schema';
 
-export const FormClient = ({ register, id }) => {
+export const FormPessoa = ({ register, id }) => {
   const { controllerSnack } = useSnackbar();
   const { loading, error, response, makeRequest } = useApiRequest();
-
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register: reg,
@@ -26,7 +27,7 @@ export const FormClient = ({ register, id }) => {
       ...register,
       tipoPessoa: register?.tipoPessoa ?? 'pj',
     },
-    resolver: yupResolver(SchemaFormClient),
+    resolver: yupResolver(SchemaFormPessoa),
   });
 
   const [cep, setCep] = useState('');
@@ -45,6 +46,7 @@ export const FormClient = ({ register, id }) => {
             ? 'Pessoa Atualizada com sucesso'
             : 'Pessoa Adicionada com sucesso',
         });
+        navigate('/pessoa');
       })
       .catch((error) => {
         controllerSnack({
@@ -77,8 +79,6 @@ export const FormClient = ({ register, id }) => {
           type: 'success',
           text: 'Endereço buscado com sucesso',
         });
-        //setAddress(response.data);
-        console.log(response.data);
 
         setValue('uf', response?.data?.uf);
         setValue('complemento', response?.data?.complemento);
@@ -108,7 +108,7 @@ export const FormClient = ({ register, id }) => {
 
   return (
     <>
-      <Typography fontWeight={600} fontSize="1.2rem" display>
+      <Typography fontWeight={600} fontSize="1.2rem" color="#90AAEF">
         {id ? 'Editar Pessoa' : 'Adicionar Pessoa'}
       </Typography>
       <form noValidate onSubmit={handleSubmit(submitForm)}>

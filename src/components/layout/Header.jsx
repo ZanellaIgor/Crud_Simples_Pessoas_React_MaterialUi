@@ -4,7 +4,7 @@ import React from 'react';
 const Header = ({ children }) => {
   return (
     <Box>
-      <AppBar sx={{ bgcolor: '#1976d2', height: '6rem' }}>
+      <AppBar sx={{ bgcolor: '#1976d2', height: '4rem' }}>
         <Toolbar
           sx={{
             width: '100%',

@@ -9,11 +9,11 @@ export const Layout = ({ children }) => {
       <DrawerNavBar>
         <main
           style={{
-            marginLeft: 250, // Ajuste para a largura do Drawer
-            marginTop: '6rem', // Ajuste para a altura do Header
-            padding: '1rem',
-            flexGrow: 1, // Para ocupar o espaço restante
-            overflowY: 'auto',
+            marginLeft: 250,
+            marginTop: '4rem',
+            flexGrow: 1,
+            overflow: 'hidden',
+            maxHeight: '100%',
           }}
         >
           {children}
